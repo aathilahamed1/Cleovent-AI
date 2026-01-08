@@ -1,0 +1,16 @@
+{
+  "placeholderImages": [
+    {
+      "id": "city-map",
+      "description": "A satellite view of a city map.",
+      "imageUrl": "https://picsum.photos/seed/map/1200/800",
+      "imageHint": "city map"
+    },
+    {
+      "id": "city-map-3d",
+      "description": "A 3D render of a city with a heatmap overlay indicating CO2 levels.",
+      "imageUrl": "https://storage.googleapis.com/aai-sit-splash-assets/ecotwin/city-map-3d-heatmap.png",
+      "imageHint": "3d city map"
+    }
+  ]
+}

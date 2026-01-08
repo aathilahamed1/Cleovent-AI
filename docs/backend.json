@@ -1,0 +1,177 @@
+
+{
+  "entities": {
+    "Zone": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Zone",
+      "type": "object",
+      "description": "Represents a geographical zone within the urban environment.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the zone (e.g., Industrial Zone A)."
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the zone.",
+          "enum": [
+            "Industrial",
+            "Transport",
+            "Commercial",
+            "Residential",
+            "Urban Park",
+            "Power Plant",
+            "Waterfront",
+            "University"
+          ]
+        },
+        "baseEmissions": {
+          "type": "number",
+          "description": "Total base CO2 emissions of the zone in tCO2/day."
+        },
+        "placement": {
+          "type": "object",
+          "description": "Geo-point representation of the zone's central point.",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "baseEmissions",
+        "placement"
+      ]
+    },
+    "Intervention": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Intervention",
+      "type": "object",
+      "description": "Represents a CO2 capture intervention deployed within a specific zone.",
+      "properties": {
+        "systemId": {
+          "type": "string",
+          "description": "System ID of the intervention (e.g., CCS001)."
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the intervention.",
+           "enum": [
+            "Amine Scrubber",
+            "Roadside DAC",
+            "Vertical Garden",
+            "Algal Bioreactor",
+            "Biofilter"
+          ]
+        },
+        "zoneId": {
+          "type": "string",
+          "description": "Reference to the Zone document ID this intervention belongs to."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the intervention.",
+           "enum": [
+            "Simulated",
+            "Proposed",
+            "Deployed"
+          ]
+        },
+        "placement": {
+          "type": "object",
+          "description": "Coordinates (latitude/longitude) of the intervention's placement.",
+           "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            }
+          }
+        },
+        "estimatedImpact": {
+          "type": "number",
+          "description": "Estimated impact of the intervention on CO2 levels in tCO2/day."
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Key parameters of the intervention.",
+          "properties": {
+            "ratedAirflow": {
+              "type": "number"
+            },
+            "removalEfficiency": {
+              "type": "number"
+            },
+            "energyUse": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "required": [
+        "systemId",
+        "type",
+        "zoneId",
+        "status",
+        "placement",
+        "estimatedImpact"
+      ]
+    },
+    "Scenario": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Scenario",
+      "type": "object",
+      "description": "A simulation scenario combining a set of interventions.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the scenario."
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the scenario's goals."
+        },
+        "interventions": {
+          "type": "array",
+          "description": "An array of document IDs from the 'interventions' collection.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["name", "description", "interventions"]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password"
+    ]
+  },
+  "firestore": {
+    "/zones/{zoneId}": {
+      "schema": {
+        "$ref": "#/entities/Zone"
+      },
+      "description": "Stores all zone documents."
+    },
+    "/interventions/{interventionId}": {
+      "schema": {
+        "$ref": "#/entities/Intervention"
+      },
+      "description": "Stores all intervention documents."
+    },
+    "/scenarios/{scenarioId}": {
+      "schema": {
+        "$ref": "#/entities/Scenario"
+      },
+      "description": "Stores all scenario documents."
+    }
+  }
+}
