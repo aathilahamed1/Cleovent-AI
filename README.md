@@ -38,7 +38,7 @@ Real-Time Digital Twin Concept
 Combines simulated data with real-world datasets.
 
 What-if Scenario Planning
-Enables policy testing before real-world deployment.
+Enables policy testing before real-world deployment
 
 🧠 Innovation & Uniqueness
 
