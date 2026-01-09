@@ -13,7 +13,7 @@ Theme: Clean & Green Technology
 
 CLEOVENT is a Digital Twin–based urban CO₂ simulation platform that models emissions, dispersion, and capture strategies in real time to support data-driven urban climate decisions.
 
-The system enables planners and policymakers to:
+The system enables planners and policymakers to
 
 Simulate CO₂ emissions across city zones
 
